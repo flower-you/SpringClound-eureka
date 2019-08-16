@@ -1,0 +1,51 @@
+logging:
+  level:
+    com.abupdate: debug
+    config: classpath:logback.xml
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
+
+  #数据源
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://180.97.69.199:33061/delta_tools?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
+      username: iotusr
+      password: 123123
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 2
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      num-tests-per-eviction-run: 3
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: true
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+
+
+mybatis:
+  mapperLocations: classpath:mapper/**/*.xml
+  config-location: classpath:conf/mybatis-config.xml
+
+
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:  # 服务名，default表示所有服务
+        connectTimeout: 10000
+        readTimeout: 60000
+        loggerLevel: full  # full | basic | none | headers
+        #requestInterceptors: 拦截器

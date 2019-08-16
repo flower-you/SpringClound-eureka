@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<properties resource="dev.properties"/>-->
+
+    <context id="mysql" targetRuntime="MyBatis3Simple" >
+        <commentGenerator>
+            <!-- 不生成注释 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://180.97.69.199:33061/delta_tools?useSSL=false&amp;nullNamePatternMatchesAll=true"
+                        userId="iotusr"
+                        password="123123">
+        </jdbcConnection>
+
+        <!--默认为false,把Jdbc decimal和numeric类型解析为java.math.BigDecimal类型 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+
+        <javaModelGenerator targetPackage="com.abupdate.schedule.bean" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.abupdate.schedule.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+<!--        <table tableName="quartz_job" domainObjectName="QuartzJob"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
+
+<!--        <table tableName="quartz_job_record" domainObjectName="QuartzJobRecord"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
+        <table tableName="quartz_sample" domainObjectName="QuartzSample"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+    </context>
+</generatorConfiguration>

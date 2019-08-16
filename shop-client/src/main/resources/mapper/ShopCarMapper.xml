@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.abupdate.shopclient.mapper.ShopCarMapper" >
+  <resultMap id="BaseResultMap" type="com.abupdate.shopclient.bean.ShopCar" >
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.abupdate.shopclient.bean.ShopCar" >
+    insert into t_shopcar (uid, bid, num, 
+      status, create_time, update_time
+      )
+    values (#{uid,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select uid, bid, num, status, create_time, update_time
+    from t_shopcar
+  </select>
+
+
+</mapper>
