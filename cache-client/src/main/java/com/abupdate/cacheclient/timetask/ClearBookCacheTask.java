@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.ScheduledFuture;
 
@@ -142,7 +143,11 @@ public class ClearBookCacheTask {
          @Override
          public void run() {
              System.out.println("定时任务要执行的方法"+new Date());
-             redisDao.removePattern("book*");
+             try {
+                 redisDao.removePattern("book*",10);
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
          }
      }
 
